@@ -1,1 +1,296 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<title>Touch/pointer tests and demos</title>
+<meta name="viewport" content="width=device-width">
+<style>
+html,body {
+	background: #eee;
+	color: #333;
+	font: 1em/1.35 Arial, Helvetica, sans;
+}
 
+body {
+    -webkit-text-size-adjust: 100%;
+}
+
+h2 {
+	margin-top: 1em;
+	border-top: 1px #ccc solid;
+	padding-top: 1em;
+}
+
+ul {
+	margin: 0;
+	padding: 0 0 0 1.25em;
+}
+
+li {
+	margin: 0;
+	padding: 0.25em;
+}
+
+li a {
+    padding: 0.25em 0.5em;
+    background: #e9e9e9;
+    border-radius: 0.5em;
+    display: inline-block;
+    border: 1px #ccc solid;
+    color: #333;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 170, 255, 0.25); /* iOS specific hack, as it doesn't apply :hover/:active; */
+}
+
+li a:focus, li a:hover, li a:active {
+	background: #66ccff;
+	color: #000;
+	outline: none;
+}
+</style>
+</head>
+<body>
+<h1>Touch/pointer tests and demos</h1>
+<p>Live versions of the various files at <a href="https://github.com/patrickhlauke/touch">github.com/patrickhlauke/touch</a>.</p>
+<p>See the presentation <a href="http://patrickhlauke.github.io/getting-touchy-presentation/"><cite>Getting touchy - everything you (n)ever wanted to know about touch and pointer events</cite></a> for some context and further information on the meaning of these tests and demos.</p>
+
+<h2>Tests</h2>
+<p>For a series of interesting results (different browsers, operating systems, assistive technologies), see my <a href="./tests/results/">touch/pointer test results</a> and, separately, <a href="./pointer-hover-any-pointer-any-hover/results/"><code>pointer</code>/<code>hover</code>/<code>any-pointer</code>/<code>any-hover</code> test results</a>.</p>
+
+<h3>Feature detection</h3>
+<ul>
+<li><a href="./tests/touch-feature-detect.html">touch feature detect</a></li>
+<li><a href="./tests/pointer-multitouch-detect.html">pointer/multitouch detect</a></li>
+</ul>
+
+<h3>Event listener</h3>
+<ul>
+<li><a href="./tests/event-listener_mouse-only.html">event listener - mouse only</a></li>
+<li><a href="./tests/event-listener_all-no-timings.html">event listener - all events, no timings</a></li>
+<li><a href="./tests/event-listener_show-delay.html">event listener - show delay</a></li>
+<li><a href="./tests/event-listener_show-delay-no-meta.html">event listener - show delay - no meta viewport</a></li>
+<li><a href="./tests/event-listener.html">event listener - all events, including timings</a> <strong>(main test)</strong></li>
+<li><a href="./tests/event-listener_no-meta-viewport.html">event listener - no meta viewport</a></li>
+<li><a href="./tests/event-listener_link.html">event listener - link instead of button</a></li>
+<li><a href="./tests/event-listener_div.html">event listener - <code>div</code> instead of button</a></li>
+<li><a href="./tests/event-listener_div-tabindex.html">event listener - <code>div</code> with <code>tabindex</code></a></li>
+<li><a href="./tests/event-listener-force-pressure.html">event listener - shows <code>force</code> / <code>webkitForce</code> / <code>pressure</code></a></li>
+<li><a href="./tests/event-listener-coordinates.html">event listener - shows coordinates if present</a> (to test VoiceOver, Opera SpatNav, etc behavior)</li>
+<li><a href="./tests/event-listener-keyevents.html">event listener - including keyboard events</a></li>
+<li><a href="./tests/event-listener-keyevents-text-input.html">event listener - including keyboard events on a text input</a></li>
+</ul>
+
+<h4>Touch <em>or</em> mouse</h4>
+<ul>
+<li><a href="./tests/event-listener_naive-touch-or-mouse.html">event listener - naive "touch OR mouse" approach</a></li>
+<li><a href="./tests/event-listener_naive-event-doubling.html">event listener - naive doubling of touch and mouse handlers</a></li>
+<li><a href="./tests/event-listener_naive-event-doubling-fixed.html">event listener - double handlers, with <code>preventDefault</code></a></li>
+</ul>
+
+<h4>Prevent default</h4>
+<ul>
+<li><a href="./tests/event-listener_prevent-default.html">event listener - <code>preventDefault</code> all events</a></li>
+<li><a href="./tests/event-listener_prevent-default-touchstart.html">event listener - <code>preventDefault</code> on <code>touchstart</code></a></li>
+<li><a href="./tests/event-listener_prevent-default-touchmove.html">event listener - <code>preventDefault</code> on <code>touchmove</code></a></li>
+<li><a href="./tests/event-listener_prevent-default-touchend.html">event listener - <code>preventDefault</code> on <code>touchend</code></a></li>
+</ul>
+
+<h4>300ms <code>click</code> delay optimisations/heuristics</h4>
+<ul>
+<li><a href="./tests/event-listener_user-scalable-no.html">event listener - <code>user-scalable=no</code></a></li>
+<li><a href="./tests/event-listener_minimum-maximum-scale.html">event listener - <code>minimum-scale=1,maximum-scale=1</code></a></li>
+<li><a href="./tests/event-listener_width-device-width.html">event listener - <code>width=device-width</code></a></li>
+<li><a href="./tests/event-listener_touch-action-none.html">event listener - <code>touch-action:none</code></a></li>
+<li><a href="./tests/event-listener_touch-action-none_no-meta.html">event listener - <code>touch-action:none</code> - no meta viewport</a></li>
+<li><a href="./tests/event-listener_touch-action-manipulation.html">event listener - <code>touch-action:manipulation</code></a></li>
+<li><a href="./tests/event-listener_touch-action-manipulation_no-meta.html">event listener - <code>touch-action:manipulation</code> - no meta viewport</a></li>
+</ul>
+
+<h3>Touchlist objects</h3>
+<ul>
+<li><a href="./touchlist-objects/">touchlist objects</a></li>
+</ul>
+
+<h3>touch/pointer and browser scroll/zoom</h3>
+<ul>
+<li><a href="./gesture-touch/">gesture (e.g. scroll, pinch-zoom) and touch events</a> (touch events spec grey area)</li>
+<li><a href="./gesture-touch/pointerevents.html">gesture (e.g. scroll, pinch-zoom) and pointer events</a> (not grey area - per spec <code>pointercancel</code> fires by default)</li>
+</ul>
+
+<h3>iOS event bubbling</h3>
+<ul>
+<li><a href="./ios-clickable/">iOS - Making Elements Clickable</a></li>
+<li><a href="./bubbling/button.html">event bubbling - <code>button</code></a></li>
+<li><a href="./bubbling/link.html">event bubbling - link</a></li>
+<li><a href="./bubbling/div.html">event bubbling - <code>div</code></a></li>
+<li><a href="./bubbling/div-tabindex.html">event bubbling - <code>div</code> with <code>tabindex=0</code></a></li>
+<li><a href="./bubbling/div-tabindex-role.html">event bubbling - <code>div</code> with <code>tabindex=0</code> and <code>role=button</code></a></li>
+<li><a href="./bubbling/div-onclick-target.html">event bubbling - <code>div</code> with <code>onclick</code> attribute</a></li>
+<li><a href="./bubbling/div-onclick-ancestor.html">event bubbling - <code>div</code> with <code>onclick</code> attribute on ancestor</a></li>
+<li><a href="./bubbling/div-addeventlistener-target.html">event bubbling - <code>div</code> with <code>addEventListener("click"...)</code></a></li>
+<li><a href="./bubbling/div-addeventlistener-ancestor.html">event bubbling - <code>div</code> with <code>addEventListener("click"...)</code> on ancestor</a></li>
+<li><a href="./bubbling/div-cursorpointer-target.html">event bubbling - <code>div</code> with <code>cursor:pointer</code></a></li>
+<li><a href="./bubbling/div-cursorpointer-ancestor.html">event bubbling - <code>div</code> with <code>cursor:pointer</code> on ancestor</a></li>
+<li><a href="./tests/event-listener-body.html">event listener - events fired at <code>&lt;body&gt;</code></a></li>
+<li><a href="./tests/event-listener-body-clickable.html">event listener - events fired at <code>&lt;body&gt;</code> - with iOS clickability hacks</a></li>
+<li><a href="./tests/event-listener-html.html">event listener - events fired at <code>&lt;html&gt;</code></a></li>
+</ul>
+
+<h3>Implicit and explicit capture</h3>
+<ul>
+<li><a href="./implicit-explicit-capture/">Implicit and explicit capture</a></li>
+</ul>
+
+<h3><code>touch-action</code></h3>
+<ul>
+<li><a href="./touch-action-scrolling/"><code>touch-action</code> scrolling</a></li>
+</ul>
+
+<h3><code>pointerrawupdate</code>, <code>getCoalescedEvents()</code> and <code>getPredictedEvents()</code></h3>
+<ul>
+<li><a href="./draw-pointermove/index.html">basic drawing using <code>pointermove</code></a></li>
+<li><a href="./draw-pointerrawupdate/index.html">basic drawing using <code>pointerrawupdate</code></a></li>
+<li><a href="./draw-pointermove-coalesced/index.html">basic drawing using <code>pointermove</code> and <code>getCoalescedEvents()</code></a></li>
+<li><a href="./draw-predicted/index.html">basic drawing with <code>getPredictedEvents()</code></a></li>
+<li><a href="./coalesced-predicted-events/">combined <code>pointermove</code>, <code>getCoalescedEvents()</code>, and <code>getPredictedEvents()</code></a></li>
+</ul>
+
+<h3>Media Queries 4 Interaction Media Features</h3>
+<ul>
+<li><a href="./pointer-hover-any-pointer-any-hover/">CSS: <code>pointer</code> / <code>hover</code> / <code>any-pointer</code> / <code>any-hover</code></a></li>
+</ul>
+
+<h3>Touchscreen detection</h3>
+<ul>
+<li><a href="./touchscreen-detection/">Touchscreen detection</a></li>
+</ul>
+
+<h2>Demos</h2>
+
+<h3>300ms <code>click</code> delay</h3>
+<ul>
+<li><a href="./fastclick/">Tap delay example - Bootstrap navigation and 300ms delay</a></li>
+<li><a href="./fastclick/fastclick.html">Tap delay example - Bootstrap with <code>fastclick.js</code></a></li>
+</ul>
+
+<h3><code>:hover</code> dropdown</h3>
+<ul>
+<li><a href="./css-dropdown/mouse-only.html">CSS dropdown</a></li>
+<li><a href="./css-dropdown/mouse-keyboard.html">CSS dropdown with JS keyboard support</a></li>
+<li><a href="./css-dropdown/mouse-keyboard-touch.html">CSS dropdown with JS keyboard and touch support</a></li>
+<li><a href="./css-dropdown/mouse-only-aria-haspopup.html">CSS dropdown with <code>aria-haspopup</code> for IE10+</a></li>
+</ul>
+
+<h3>Particle party</h3>
+<ul>
+<li><a href="./particle/2/">particle party - mouse only</a></li>
+<li><a href="./particle/2a/">particle party - mouse only, but with <code>touch-action:none</code></a></li>
+<li><a href="./particle/3/">particle party - mouse and touch</a></li>
+<li><a href="./particle/3a/">particle party - mouse, touch and <code>touch-action:none</code></a></li>
+<li><a href="./particle/3b/">particle party - pointer events and <code>touch-action:none</code></a></li>
+</ul>
+
+<h3>Particle field</h3>
+<ul>
+<li><a href="./particle/4/">particle field - mouse only</a></li>
+<li><a href="./particle/4a/">particle field with touch</a></li>
+<li><a href="./particle/4b/">particle field with touch and <code>touch-action:none</code></a></li>
+<li><a href="./particle/4c/">particle field with <code>pointermove</code></a></li>
+<li><a href="./particle/4d/">particle field with <code>pointermove</code> and <code>touch-action:none</code></a></li>
+<li><a href="./particle/4e/">particle field with <code>pointermove</code>, <code>touch-action:none</code> and <code>isPrimary</code> check</a></li>
+</ul>
+
+<h3>Swipe gesture</h3>
+<ul>
+<li><a href="./swipe/">swipe gesture (from basic principles) with touch events</a></li>
+<li><a href="./swipe/pointerevents.html">swipe gesture (from basic principles) with pointer events</a></li>
+<li><a href="./hammer/swipe/">swipe gesture (using <code>Hammer.js</code>)</a></li>
+</ul>
+
+<h3>Picture slider/carousel</h3>
+<ul>
+<li><a href="./picture-slider/">picture slider</a></li>
+</ul>
+
+<h3>Pull to refresh</h3>
+<ul>
+<li><a href="./pull-to-refresh/overscroll.html">Pull to refresh (overscroll and touch events)</a></li>
+</ul>
+
+<h3>Debounce/throttle</h3>
+<ul>
+<li><a href="./touch-limit/">debounce/throttle with limit.js</a></li>
+</ul>
+
+<h3>Tracker</h3>
+<ul>
+<li><a href="./tracker/mouse-tracker.html">tracker - mouse only</a></li>
+<li><a href="./tracker/mouse-tracker_touch-action-none.html">tracker - mouse only, but with <code>touch-action:none</code></a></li>
+<li><a href="./tracker/multi-touch-tracker.html">tracker - mouse and touch events</a></li>
+<li><a href="./tracker/multi-touch-tracker-gesture-preventdefault.html">tracker - mouse and touch events, <code>preventDefault</code> on gesture for iOS/iPad</a> (spoiler: doesn't work)</li>
+<li><a href="./tracker/multi-touch-tracker-index.html">tracker - touch events only, showing <code>TouchList</code> index for each <code>Touch</code></a></li>
+<li><a href="./tracker/multi-touch-tracker-pointer.html">tracker - mouse, touch and pointer events</a></li>
+<li><a href="./tracker/tracker-radius-rotationangle.html">tracker - Touch Events <code>radiusX</code>, <code>radiusY</code>, <code>rotationAngle</code></a></li>
+<li><a href="./tracker/tracker-width-height.html">tracker - Pointer Events <code>width</code>, <code>height</code></a></li>
+<li><a href="./tracker/tracker-force-pressure.html">tracker - Touch Events <code>force</code>, Pointer Events <code>pressure</code> </a></li>
+<li><a href="./tracker/multi-touch-tracker-pointer-hud-toucheventsonly.html">tracker - mouse and touch events, with HUD info for each point</a></li>
+<li><a href="./tracker/multi-touch-tracker-pointer-hud.html">tracker - mouse, touch and pointer events, with HUD info for each point</a></li>
+</ul>
+
+<h3>Pointer events advanced pen support</h3>
+<ul>
+<li><a href="./pen-tracker/">Pointer Events - pen with tilt support (WebGL) - use <code>tiltX</code> / <code>tiltY</code></a></li>
+<li><a href="./pen-tracker/index.html?azimuth">Pointer Events - pen with tilt support (WebGL) - use <code>altitudeAngle</code> / <code>azimuthAngle</code> (<abbr title="Pointer Events Level 3">PE3</abbr>)</a></li>
+</ul>
+
+<h3>3D jQuery Rotator</h3>
+<ul>
+<li><a href="./3d-jquery-rotator/">3D jQuery Rotator</a> (original, only mouse events)</li>
+<li><a href="./3d-jquery-rotator/index-pointerevents.html">3D jQuery Rotator with Mouse and Pointer Events</a></li>
+<li><a href="./3d-jquery-rotator/index-pointerevents-pep.html">3D jQuery Rotator with Pointer Events and PEP</a></li>
+</ul>
+
+<h3>Polyfills</h3>
+<ul>
+<li><a href="./handjs/listener/event-listener.html">event listener with HandJS</a></li>
+<li><a href="./pep/listener/event-listener.html">event listener with PEP</a></li>
+<li><a href="./pep-draw/">PEP Draw</a></li>
+<li><a href="./handjs/tracker/tracker-just-pointer.html">tracker - pointer events only</a></li>
+<li><a href="./handjs/tracker/tracker-just-pointer-handjs.html">tracker - pointer events only but with HandJS</a></li>
+<li><a href="./pep/tracker/tracker-just-pointer-pep.html">tracker - pointer events only but with PEP</a></li>
+<li><a href="./tracker/multi-touch-tracker-pointer-hud-pep.html">tracker - mouse, touch and pointer events, with HUD and PEP</a></li>
+<li><a href="./ie-touch/listener/event-listener.html">event listener with ie-touch</a></li>
+</ul>
+
+<h3>Input detection</h3>
+<ul>
+<li><a href="./what-input/">What Input?</a></li>
+<li><a href="./what-input/index-fastclick.html">What Input? + fastclick.js</a> (test for compatibility)</li>
+</ul>
+
+<h3><code>click</code> as Pointer Event</h3>
+<ul>
+<li><a href="./click-pointertype/index.html"><code>click</code> showing <code>pointerType</code></a></li>
+</ul>
+
+<h3>Two-finger gestures (pinch/rotate)</h3>
+<ul>
+<li><a href="./iosgestures/">iOS gestures</a></li>
+<li><a href="./iosgestures/image.html">iOS gestures applied</a></li>
+<li><a href="./pinch-zoom-rotate/">pinch/rotate gestures</a></li>
+<li><a href="./picture-organiser/">picture organiser</a></li>
+</ul>
+
+
+<h3>LeapMotion</h3>
+<ul>
+<li><a href="./leapmotion/tracker/">tracker - LeapMotion</a> (example of programmatically generating Pointer Events)</li>
+</ul>
+
+<h2>3rd party examples</h2>
+<ul>
+<li><a href="./paranoid_0.5/">Paranoid 0.5</a> <small>(<a href="https://www.splintered.co.uk/experiments/archives/paranoid_0.5/" title="Paranoid 0.5 on splintered.co.uk">original</a>)</small></li>
+<li><a href="http://codepen.io/collection/AOyMpJ/">CodePen collection: Basic slider</a></li>
+<li><a href="./w3c_tpac2023_pewg/index.html">Presentation: W3C Pointer Events Working Group update - changes and additions in Pointer Events Level 3 - Patrick H. Lauke / TPAC 2023</a></li>
+</ul>
+</body>
+</html>
